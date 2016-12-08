@@ -10,73 +10,9 @@
   "scripts": {
     "clean": "rimraf dist",
     "compile": "babel-node bin/compile",
-    "lint": "eslint src tests server",
-    "lint:fix": "npm run lint -- --fix",
     "start": "babel-node bin/server",
-    "serve": "better-npm-run start",
-    "dev": "better-npm-run dev",
-    "dev:no-debug": "npm run dev -- --no_debug",
-    "test": "better-npm-run test",
-    "test:dev": "npm run test -- --watch",
-    "postinstall": "npm run deploy:prod",
-    "deploy": "npm run clean && npm run compile",
-    "deploy:dev": "better-npm-run deploy:dev",
-    "deploy:prod": "better-npm-run deploy:prod",
-    "codecov": "cat coverage/*/lcov.info | codecov"
-  },
-  "betterScripts": {
-    "start:prod": {
-      "command": "babel-node bin/server",
-      "env": {
-        "NODE_ENV": "production"
-      }
-    },
-    "compile": {
-      "command": "babel-node bin/compile",
-      "env": {
-        "DEBUG": "app:*"
-      }
-    },
-    "dev": {
-      "command": "nodemon --exec babel-node bin/server",
-      "env": {
-        "NODE_ENV": "development",
-        "DEBUG": "app:*"
-      }
-    },
-    "deploy": {
-      "command": "npm run clean && npm run compile",
-      "env": {
-        "DEBUG": "app:*"
-      }
-    },
-    "deploy:dev": {
-      "command": "npm run deploy",
-      "env": {
-        "NODE_ENV": "development",
-        "DEBUG": "app:*"
-      }
-    },
-    "deploy:prod": {
-      "command": "npm run deploy",
-      "env": {
-        "NODE_ENV": "production",
-        "DEBUG": "app:*"
-      }
-    },
-    "start": {
-      "command": "babel-node bin/server",
-      "env": {
-        "DEBUG": "app:*"
-      }
-    },
-    "test": {
-      "command": "babel-node ./node_modules/karma/bin/karma start build/karma.conf",
-      "env": {
-        "NODE_ENV": "test",
-        "DEBUG": "app:*"
-      }
-    }
+    "postinstall": "npm run deploy",
+    "deploy": "npm run clean && npm run compile"
   },
   "repository": {
     "type": "git",
