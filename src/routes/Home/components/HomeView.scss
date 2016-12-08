@@ -1,0 +1,101 @@
+.textInput {
+  margin-bottom: 10px;
+  display: block;
+  position: relative;
+  width: 300px;
+  padding-left: 5px;
+}
+.textArea {
+  margin-bottom: 10px;
+  display: block;
+  position: relative;
+  width: 300px;
+  padding-left: 5px;
+}
+.image {
+  width: 400px;
+  margin-top: 70px;
+}
+
+@media (max-width: 600px) {
+  .image {
+    // display: none;
+  }
+}
+
+.radioButton {
+}
+.radioLables {
+  display: inline-block;
+  margin-bottom: 10px;
+  margin-right: 20px;
+  margin-left: 5px;
+}
+.firstSection,
+.secondSection {
+  width: 50%;
+  display: inline-block;
+  // border: 1px solid red;
+  vertical-align: top;
+}
+
+@media (max-width: 600px) {
+  .firstSection {
+    width: 100%;
+  }
+  .secondSection {
+    display: none;
+  }
+}
+
+.signature {
+  display: block;
+}
+
+.header {
+  font-size: 40px;
+}
+
+h2 {
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.button {
+
+}
+.thanks {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: black;
+  height: 100%;
+
+  h1 {
+    transform: rotate(-15deg);
+    color: pink;
+    font-weight: bold;
+    position: absolute;
+    top: 0px;
+    left: 40px;
+    font-size: 60px;
+
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+  }
+
+  img{
+    width: 100%;
+  }
+  // margin-left: -350px;
+  // border-radius: 5px;
+}
+
+.hide {
+  display: none;
+}
+
+.description {
+  // color: #6F6F6E;
+}
