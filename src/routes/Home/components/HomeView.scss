@@ -41,7 +41,12 @@
 
 @media (max-width: 600px) {
   .firstSection {
-    width: 100%;
+    width: 95%;
+
+    .textInput,
+    .textArea {
+      width: 100%;
+    }
   }
   .secondSection {
     display: none;

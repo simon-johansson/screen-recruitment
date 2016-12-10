@@ -90,7 +90,7 @@ class HomeView extends React.Component {
             <input className={classes.textInput} type="text" placeholder="Phone number" value={phone} onInput={this.setPhone.bind(this)} />
             <input className={classes.textInput} type="text" placeholder="Email" value={email} onInput={this.setEmail.bind(this)} />
             <input className={classes.textInput} type="text" placeholder="LinkedIn address" onInput={this.setLinkedIn.bind(this)} />
-            <textarea rows="5" className={classes.textArea} placeholder="This person should work at screen because..." onChange={this.setFreetext.bind(this)} />
+            <textarea rows="4" className={classes.textArea} placeholder="This person should work at screen because..." onChange={this.setFreetext.bind(this)} />
             <button className={classes.button + ' btn btn-default'} type="button" onClick={this.sendRecommendation.bind(this)}>Send to Sara</button>
           </form>
         </section>
