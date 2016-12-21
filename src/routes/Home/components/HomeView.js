@@ -59,12 +59,14 @@ class HomeView extends React.Component {
       })
     }).then((res) => {
       if (res.status !== 200) {
-        console.log('Faild to send')
+        console.log(res);
+        alert('Faild to send 😔! Try again, if you still get an error then please send a mail to Simon Johansson')
       } else {
         this.setState({hasSent: true})
       }
     }).catch((err) => {
-      console.log(err)
+      console.log(err);
+      alert('Faild to send 😔! Try again, if you still get an error then please send a mail to Simon Johansson')
     })
   }
 
