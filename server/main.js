@@ -14,6 +14,9 @@ import webpackHMRMiddleware from './middleware/webpack-hmr'
 
 import sendMail from './lib/mail'
 
+var request = require('request')
+var cheerio = require('cheerio')
+
 let router = koaRouter()
 let body = koaBody()
 
@@ -33,15 +36,39 @@ app.use(convert(historyApiFallback({
   verbose: false
 })))
 
-
 router.post('/submit', body,
   function *(next) {
-    // console.log(this.request.body);
-    // => POST body
-    // this.body = JSON.stringify(this.request.body);
-    sendMail(JSON.parse(this.request.body))
+    this.type = 'application/json'
+    this.body = yield sendMail(JSON.parse(this.request.body))
   }
-);
+)
+
+const people = (callback) => {
+  request('http://screeninteraction.com/people', function (error, response, html) {
+    if (!error && response.statusCode == 200) {
+      var $ = cheerio.load(html);
+      var arr = [];
+       $('.person').each(function (i, element) {
+        var name = $(this).find('h3').text()
+        var role = $(this).find('p').text()
+        // console.log(name);
+        // console.log(role);
+        arr.push({
+          value: name,
+          label: name
+        })
+      })
+      callback(null, JSON.stringify(arr))
+    }
+  })
+}
+
+router.post('/people', body,
+  function *(next) {
+    this.type = 'application/json'
+    this.body = yield people
+  }
+)
 
 // ------------------------------------
 // Apply Webpack HMR Middleware

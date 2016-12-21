@@ -2,15 +2,19 @@
   margin-bottom: 10px;
   display: block;
   position: relative;
-  width: 300px;
-  padding-left: 5px;
+  width: 350px;
+  padding: 5px 10px;
+  border-radius: 3px;
+  border: 1px solid lightgray;
 }
 .textArea {
   margin-bottom: 10px;
   display: block;
   position: relative;
-  width: 300px;
-  padding-left: 5px;
+  width: 350px;
+  padding: 5px 10px;
+  border-radius: 3px;
+  border: 1px solid lightgray;
 }
 .image {
   width: 400px;
@@ -86,7 +90,7 @@ h2 {
     left: 40px;
     font-size: 60px;
 
-    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-width: 3px;
     -webkit-text-stroke-color: black;
   }
 
@@ -97,10 +101,23 @@ h2 {
   // border-radius: 5px;
 }
 
+form p {
+  margin-bottom: 5px;
+}
+
 .hide {
   display: none;
 }
 
+
+.inputForm,
 .description {
-  // color: #6F6F6E;
+  max-width: 350px;
+}
+
+.description {
+}
+
+.recommender {
+  margin-bottom: 10px;
 }

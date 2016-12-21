@@ -1,6 +1,9 @@
 import React from 'react'
 import classes from './HomeView.scss'
 
+import Select from 'react-select'
+import 'react-select/dist/react-select.css'
+
 class HomeView extends React.Component {
 
   constructor(props) {
@@ -14,9 +17,25 @@ class HomeView extends React.Component {
       freetext: '',
       howIKnow: '',
       hasSent: false,
-    };
+      recommender: '',
+      people: []
+    }
   }
 
+  componentDidMount() {
+    // console.log('mount');
+
+    fetch('/people', {
+      method: 'post',
+      body: JSON.stringify({})
+    })
+    .then((res) => res.json())
+    .then((people) => {
+      this.setState({people: people.sort()})
+    })
+  }
+
+  setRecommender(val) { this.setState({ recommender: val.label}); }
   setHowIKnow(ev) { this.setState({ howIKnow: ev.currentTarget.value}); }
   setName(ev) { this.setState({name: ev.target.value}); }
   setEmail(ev) { this.setState({email: ev.target.value}); }
@@ -36,14 +55,22 @@ class HomeView extends React.Component {
         linkedin: this.state.linkedin,
         freetext: this.state.freetext,
         howIKnow: this.state.howIKnow,
+        recommender: this.state.recommender
       })
     }).then((res) => {
-      this.setState({hasSent: true});
-    });
+      if (res.status !== 200) {
+        console.log('Faild to send')
+      } else {
+        this.setState({hasSent: true})
+      }
+    }).catch((err) => {
+      console.log(err)
+    })
   }
 
   render() {
     const { name, title, email, phone, linkedin, freetext } = this.state;
+    // console.log(this.state.recommender);
 
     return (
       <div>
@@ -52,7 +79,18 @@ class HomeView extends React.Component {
 
           <p className={classes.description}>Know someone that is looking to switch jobs or that you really would like to work with? Please fill in their details below and Sara will do her best to get them to Screen.</p>
 
-          <form>
+          <form className={classes.inputForm}>
+            <p>My name is (you can be anonymous if you like):</p>
+            <Select
+              name="form-field-name"
+              options={this.state.people}
+              onChange={this.setRecommender.bind(this)}
+              value={this.state.recommender}
+              isLoading={!this.state.people.length}
+              clearable={false}
+              className={classes.recommender}
+            />
+
             <p>I know this person from:</p>
             <input
               className={classes.radioButton}
@@ -90,7 +128,7 @@ class HomeView extends React.Component {
             <input className={classes.textInput} type="text" placeholder="Phone number" value={phone} onInput={this.setPhone.bind(this)} />
             <input className={classes.textInput} type="text" placeholder="Email" value={email} onInput={this.setEmail.bind(this)} />
             <input className={classes.textInput} type="text" placeholder="LinkedIn address" onInput={this.setLinkedIn.bind(this)} />
-            <textarea rows="4" className={classes.textArea} placeholder="This person should work at screen because..." onChange={this.setFreetext.bind(this)} />
+            <textarea rows="4" className={classes.textArea} placeholder="This person should work at Screen because..." onChange={this.setFreetext.bind(this)} />
             <button className={classes.button + ' btn btn-default'} type="button" onClick={this.sendRecommendation.bind(this)}>Send to Sara</button>
           </form>
         </section>
